@@ -26,7 +26,7 @@ class Rownania{
             }
             znaki = new char[ilosc];
             wyniki = new float[ilosc];
-            wartosci = new int[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, która zmienna
+            wartosci = new int[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, ktÃ³ra zmienna
             wyszukajZnaki();
             rozbior();
         }
@@ -37,7 +37,7 @@ class Rownania{
             linijki = new string[ilosc];
             znaki = new char[ilosc];
             wyniki = new float[ilosc];
-            wartosci = new int[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, która zmienna
+            wartosci = new int[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, ktÃ³ra zmienna
             wpiszLinijki();
             wyszukajZnaki();
             rozbior();
