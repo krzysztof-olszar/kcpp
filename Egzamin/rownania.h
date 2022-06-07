@@ -70,6 +70,9 @@ class Rownania{
         }
 
         void rozwiaz(){
+            if(!daSieRozwiazac){
+                return;
+            }
             //wszystkie zmienne na lewo, wartosci na prawo
             for(int i=0;i<this->ilosc;i++){
                 for(int j=0;j<this->ilosc;j++){
@@ -147,6 +150,7 @@ class Rownania{
                         }
                         if(licznik>=this->ilosc){
                             cout<<"Za duzo znakow!"<<endl;
+                            daSieRozwiazac = false;
                             return;
                         }
                         znaki[licznik] = temp[j];
@@ -162,6 +166,9 @@ class Rownania{
         }
 
         void rozbior(){
+            if(!daSieRozwiazac){
+                return;
+            }
             for(int i=0;i<this->ilosc;i++){
                 string temp = linijki[i];
                 string dozwolone = "qwertyuiopasdfghjklzxcvbnm";
