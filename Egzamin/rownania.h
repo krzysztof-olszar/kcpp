@@ -25,8 +25,8 @@ class Rownania{
                 linijki[i++] = split;
             }
             znaki = new char[ilosc];
-            wyniki = new float[ilosc];
-            wartosci = new int[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, ktÃ³ra zmienna
+            wyniki = new double[ilosc];
+            wartosci = new double[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, która zmienna
             wyszukajZnaki();
             rozbior();
         }
@@ -36,8 +36,8 @@ class Rownania{
             this->ilosc = x;
             linijki = new string[ilosc];
             znaki = new char[ilosc];
-            wyniki = new float[ilosc];
-            wartosci = new int[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, ktÃ³ra zmienna
+            wyniki = new double[ilosc];
+            wartosci = new double[ilosc*2*(ilosc+1)]{0};//odpowiednio: rzad, lewa/prawa strona, która zmienna
             wpiszLinijki();
             wyszukajZnaki();
             rozbior();
@@ -80,13 +80,13 @@ class Rownania{
                 ustawWartosc(getWartosc(i,0,this->ilosc),0);
             }
             //policzyc wyznacznik
-            int *macierz = new int[ilosc*ilosc]{0};
+            double *macierz = new double[ilosc*ilosc]{0};
             for(int i=0;i<ilosc;i++){
                 for(int j=0;j<ilosc;j++){
                     macierz[i*ilosc+j] = *getWartosc(i,0,j);
                 }
             }
-            int wyznacznikWartosc = wyznacznik(macierz,ilosc);
+            double wyznacznikWartosc = wyznacznik(macierz,ilosc);
             delete macierz;
             //cout<<"WYZNACZNIK TO: "<<wyznacznikWartosc<<endl;
             if(wyznacznikWartosc==0){
@@ -95,7 +95,7 @@ class Rownania{
                 return;
             }
             for(int x=0;x<ilosc;x++){
-                int *macierz = new int[ilosc*ilosc]{0};
+                double *macierz = new double[ilosc*ilosc]{0};
                 for(int i=0;i<ilosc;i++){
                     for(int j=0;j<ilosc;j++){
                         macierz[i*ilosc+j] = *getWartosc(i,0,j);
@@ -106,7 +106,7 @@ class Rownania{
                     macierz[i*ilosc+x]=*getWartosc(i,1,ilosc);
                 }
                 //cout<<"Po lewej:"<<wyznacznik(macierz,ilosc)<<"Wyznacznik:"<<wyznacznikWartosc<<endl;
-                wyniki[x] = (float)wyznacznik(macierz,ilosc)/(float)wyznacznikWartosc;
+                wyniki[x] = (double)wyznacznik(macierz,ilosc)/(double)wyznacznikWartosc;
                 delete macierz;
             }
         }
@@ -124,8 +124,8 @@ class Rownania{
     private:
         string *linijki;
         char *znaki;
-        float *wyniki;
-        int *wartosci;
+        double *wyniki;
+        double *wartosci;
         bool daSieRozwiazac = true;
 
         void wpiszLinijki(){
@@ -214,6 +214,8 @@ class Rownania{
                         znak = '+';
                         liczba = "";
                         prawaStrona = 1;
+                    }else if(temp[j]=='.'){
+                        liczba += temp[j];
                     }
                 }
                 if(liczba=="" && numerZnaku!=this->ilosc){
@@ -223,11 +225,11 @@ class Rownania{
             }
         }
 
-        int* getWartosc(int i, int j, int k){
+        double* getWartosc(int i, int j, int k){
             return &this->wartosci[i*2*(ilosc+1) + j*(ilosc+1) + k];
         }
 
-        void ustawWartosc(int* gdzie, char znak, string wartosc){
+        void ustawWartosc(double* gdzie, char znak, string wartosc){
             stringstream ss(wartosc);
             ss>>*gdzie;
             if(znak=='-'){
@@ -235,16 +237,16 @@ class Rownania{
             }
         }
 
-        void ustawWartosc(int* gdzie, int wartosc){
+        void ustawWartosc(double* gdzie, double wartosc){
             *gdzie=wartosc;
         }
 
-        int wyznacznik(int *macierz, int n){
+        double wyznacznik(double *macierz, int n){
             if(n==1){
                 return *macierz;
             }else{
-                int *podmacierz = new int[(n-1)*(n-1)]{0};
-                int det=0;
+                double *podmacierz = new double[(n-1)*(n-1)]{0};
+                double det=0;
                 int znak=1;
                 for(int kolumna=0;kolumna<n;kolumna++){
                     int p=0,q=0;

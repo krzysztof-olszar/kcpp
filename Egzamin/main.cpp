@@ -57,6 +57,13 @@ int main()
             rownania3.pokaz();
             cout<<"=========="<<endl;
 
+            cout<<"=========="<<endl;
+            Rownania rownania4("1.5a-b=18\n2.3a+1.1b=19.7");
+            rownania4.rozwiaz();
+            rownania4.pokaz();
+            cout<<"=========="<<endl;
+
+
         }
         cout<<"1-kontynuuj 2-zakoncz program 3-przykladowe rownania"<<endl;
         cin>>kontrola;
